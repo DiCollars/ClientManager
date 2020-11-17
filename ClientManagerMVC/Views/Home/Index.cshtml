@@ -13,6 +13,7 @@
         }
     }
 }
+
 @if (Model.UsersWithAccounts != null)
 {
     @foreach (var user in Model.UsersWithAccounts)
@@ -20,6 +21,7 @@
         <a class="btn btn-secondary btn-lg btn-block" asp-action="Index" asp-route-Id="@user.Id">@user.FullName</a>
     }
 }
+
 else
 {
     <div>
