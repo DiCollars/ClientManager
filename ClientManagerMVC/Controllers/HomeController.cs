@@ -113,6 +113,7 @@ namespace ClientManagerMVC.Controllers
                         return Redirect("~/Home/Index");
                     }
 
+                    _apiService.PutAccount(accountHandler).Wait();
                     return Redirect("~/Home/Index");
                 }
                 
