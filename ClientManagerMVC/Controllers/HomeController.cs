@@ -44,6 +44,7 @@ namespace ClientManagerMVC.Controllers
             {
                 return View();
             }
+
             else
             {
                 _apiService.PostNewUser(userJson).Wait();
@@ -66,6 +67,7 @@ namespace ClientManagerMVC.Controllers
 
                 return View(viewUser);
             }
+
             else
             {
                 _apiService.PutUser(userJson).Wait();
