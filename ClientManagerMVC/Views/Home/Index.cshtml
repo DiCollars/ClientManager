@@ -1,0 +1,83 @@
+﻿@model ViewModel
+@{
+    ViewData["Title"] = "Home Page";
+    string colorChanger(decimal value)
+    {
+        if (ViewBag.LimmitValue > value)
+        {
+            return "danger";
+        }
+        else
+        {
+            return "dark";
+        }
+    }
+}
+@if (Model.UsersWithAccounts != null)
+{
+    @foreach (var user in Model.UsersWithAccounts)
+    {
+        <a class="btn btn-secondary btn-lg btn-block" asp-action="Index" asp-route-Id="@user.Id">@user.FullName</a>
+    }
+}
+else
+{
+    <div>
+        <table class="table table-bordered table-dark">
+            <tbody>
+                <tr>
+                    <td>@Model.UserWithAccounts.FullName</td>
+                    <td>
+                        @Model.UserWithAccounts.Email
+                    </td>
+                    <td>
+                        <a class="btn btn-secondary" asp-action="AddScore"
+                           asp-route-userId="@Model.UserWithAccounts.Id">
+                            Add score
+                        </a>
+
+                        <a class="btn btn-secondary" asp-action="UpdateUser"
+                           asp-route-Id="@Model.UserWithAccounts.Id">
+                            Update
+                        </a>
+
+                        <a class="btn btn-secondary" asp-action="Main"
+                           asp-route-userId="@Model.UserWithAccounts.Id"
+                           asp-route-operation="@Operation.deleteUser">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        @if (Model.UserWithAccounts.Accounts.Count != 0)
+        {
+            <table class="table table-bordered table-dark">
+                <tbody>
+                    @foreach (var account in Model.UserWithAccounts.Accounts)
+                    {
+                        <tr class="bg-@colorChanger(@account.Score)">
+                            <td>@account.Name</td>
+                            <td>@account.Score</td>
+                            <td>
+                                <a class="btn btn-secondary" asp-action="UpdateAccount"
+                                   asp-route-userId="@Model.UserWithAccounts.Id"
+                                    asp-route-AccountId="@account.Id">
+                                    Update
+                                </a>
+
+                                <a class="btn btn-secondary" asp-action="Main"
+                                   asp-route-accountId="@account.Id"
+                                   asp-route-operation="@Operation.deleteAccount">
+                                   Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        <a class="btn btn-dark" href="~/Home/Index" role="button">Back</a>
+    </div>
+}
+

@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Add account";
+}
+    <form>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter account name" name="Name">
+        </div>
+        <div class="form-group">
+            <input type="hidden" class="form-control" name="UserId" value="@ViewBag.Id">
+        </div>
+        <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
